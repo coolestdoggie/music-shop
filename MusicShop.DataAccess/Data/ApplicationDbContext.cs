@@ -1,7 +1,7 @@
-﻿using MusicShop.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicShop.Models.Models;
 
-namespace BulkyBookWeb.Data
+namespace MusicShop.DataAccess.Data
 
 {
     public class ApplicationDbContext : DbContext

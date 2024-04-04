@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MusicShop.Models
+namespace MusicShop.Models.Models
 {
     public class Product
     {
@@ -10,8 +10,8 @@ namespace MusicShop.Models
         public string Name { get; set; }
         public string Description { get; set; }
         [Required]
-        public string Category { get; set; }
-       
+        public Category Category { get; set; }
+
         [Required]
         [Display(Name = "List Price")]
         [Range(1, 1000)]

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BulkyBookWeb.Data;
-using MusicShop.Models;
+using MusicShop.DataAccess.Data;
+using MusicShop.Models.Models;
 
 namespace MusicShop.Controllers
 {
