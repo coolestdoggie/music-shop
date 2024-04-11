@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MusicShop.DataAccess.Data;
+using MusicShop.DataAccess.Repository.IRepository;
+using MusicShop.DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
