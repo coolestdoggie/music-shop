@@ -10,7 +10,7 @@ namespace MusicShop.Models.Models
         public string Name { get; set; }
         public string Description { get; set; }
         [Required]
-        public Category Category { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
         [Display(Name = "List Price")]
