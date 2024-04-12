@@ -1,0 +1,42 @@
+﻿@model Category
+
+<div class="card">
+    <div class="card-header bg-secondary bg-gradient">
+        <div class="row">
+            <div class="text-center">
+                <h2 class="text-white">Create Category</h2>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <label asp-for="DisplayOrder" class="control-label">DisplayOrder</label>
+                    <input asp-for="DisplayOrder" class="form-control" />
+                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+            </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <button class="btn btn-primary form-control">Create</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Categories" asp-action="Index" class="btn btn-outline-primary border form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

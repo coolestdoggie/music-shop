@@ -41,7 +41,7 @@ namespace MusicShop.Controllers
             }
 
             var product = _unitOfWork.Product
-                .Get(m => m.Id == id);
+                .Get(m => m.Id == id, includeProperties: "Category");
             if (product == null)
             {
                 return NotFound();
@@ -86,36 +86,36 @@ namespace MusicShop.Controllers
                 {
                     _unitOfWork.Product.Update(productVM.Product);
                 }
+
                 _unitOfWork.Save();
 
 
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (files != null)
-                {
+                //string wwwRootPath = _webHostEnvironment.WebRootPath;
+                //if (files != null)
+                //{
 
-                    foreach (IFormFile file in files)
-                    {
-                        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                        string productPath = @"images\products\product-" + productVM.Product.Id;
-                        string finalPath = Path.Combine(wwwRootPath, productPath);
+                //    foreach (IFormFile file in files)
+                //    {
+                //        string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                //        string productPath = @"images\products\product-" + productVM.Product.Id;
+                //        string finalPath = Path.Combine(wwwRootPath, productPath);
 
-                        if (!Directory.Exists(finalPath))
-                            Directory.CreateDirectory(finalPath);
+                //        if (!Directory.Exists(finalPath))
+                //            Directory.CreateDirectory(finalPath);
 
-                        using (var fileStream = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
-                        {
-                            file.CopyTo(fileStream);
-                        }
+                //        using (var fileStream = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
+                //        {
+                //            file.CopyTo(fileStream);
+                //        }
 
-                    }
+                //    }
 
-                    _unitOfWork.Product.Update(productVM.Product);
-                    _unitOfWork.Save();
-
-                }
-
+                //    _unitOfWork.Product.Update(productVM.Product);
+                //    _unitOfWork.Save();
+                //}
 
                 TempData["success"] = "Product created/updated successfully";
+
                 return RedirectToAction("Index");
             }
             else
@@ -125,9 +125,11 @@ namespace MusicShop.Controllers
                     Text = u.Name,
                     Value = u.Id.ToString()
                 });
+
                 return View(productVM);
             }
         }
+
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
