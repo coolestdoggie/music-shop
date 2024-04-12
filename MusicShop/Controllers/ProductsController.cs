@@ -172,7 +172,7 @@ namespace MusicShop.Controllers
             _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();
             TempData["success"] = "Product removed successfully";
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("Index", "Products");
         }
     }
 }
