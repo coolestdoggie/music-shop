@@ -16,6 +16,7 @@ namespace MusicShop.Models.Models
         [ForeignKey("CategoryId")]
         [ValidateNever]
         public Category Category { get; set; }
+        public string ImageUrl { get; set; }
 
         [Required]
         [Display(Name = "List Price")]

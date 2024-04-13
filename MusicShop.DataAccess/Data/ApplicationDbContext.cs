@@ -76,6 +76,7 @@ namespace MusicShop.DataAccess.Data
                     Name = "Piano",
                     Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                     CategoryId = 1,
+                    ImageUrl = "",
                     ListPrice = 99
                 },
                 new Product
@@ -84,6 +85,7 @@ namespace MusicShop.DataAccess.Data
                     Name = "Electro guitar",
                     Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                     CategoryId = 2,
+                    ImageUrl = "",
                     ListPrice = 40
                 },
                 new Product
@@ -92,6 +94,7 @@ namespace MusicShop.DataAccess.Data
                     Name = "Drums",
                     Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                     CategoryId = 3,
+                    ImageUrl = "",
                     ListPrice = 55
                 },
                 new Product
@@ -100,6 +103,7 @@ namespace MusicShop.DataAccess.Data
                     Name = "Cello",
                     Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                     CategoryId = 4,
+                    ImageUrl = "",
                     ListPrice = 70
                 }
                 );
