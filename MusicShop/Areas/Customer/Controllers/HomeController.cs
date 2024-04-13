@@ -2,8 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using MusicShop.Models.Models;
 using System.Diagnostics;
 
-namespace MusicShop.Controllers
+namespace MusicShop.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

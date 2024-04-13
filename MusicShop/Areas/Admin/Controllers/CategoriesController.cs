@@ -2,8 +2,9 @@
 using MusicShop.DataAccess.Repository.IRepository;
 using MusicShop.Models.Models;
 
-namespace MusicShop.Controllers
+namespace MusicShop.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoriesController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -113,7 +114,6 @@ namespace MusicShop.Controllers
             TempData["success"] = "Category removed successfully";
             return RedirectToAction("Index", "Categories");
         }
-
     }
 }
 

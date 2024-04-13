@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using MusicShop.DataAccess.Data;
 using MusicShop.DataAccess.Repository.IRepository;
 using MusicShop.Models.Models;
 using MusicShop.Models.ViewModels;
 
-namespace MusicShop.Controllers
+namespace MusicShop.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ProductsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -24,7 +18,6 @@ namespace MusicShop.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Products
         public async Task<IActionResult> Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
@@ -32,7 +25,6 @@ namespace MusicShop.Controllers
             return View(objProductList);
         }
 
-        // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -130,7 +122,6 @@ namespace MusicShop.Controllers
             }
         }
 
-        // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || id == 0)
@@ -145,7 +136,6 @@ namespace MusicShop.Controllers
             return View(productFromDb);
         }
 
-        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
