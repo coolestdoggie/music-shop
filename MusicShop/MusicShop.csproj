@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\images\product\" />
+    <Folder Include="wwwroot\images\product\0\" />
   </ItemGroup>
 
 </Project>

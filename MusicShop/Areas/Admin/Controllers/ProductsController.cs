@@ -101,7 +101,7 @@ namespace MusicShop.Areas.Admin.Controllers
                 _unitOfWork.Save();
                 TempData["success"] = "Product created/updated successfully";
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Products");
             }
             else
             {
@@ -139,7 +139,7 @@ namespace MusicShop.Areas.Admin.Controllers
                 return Json(new { success = false, message = "Error while deleting" });
             }
 
-            string productPath = @"images\products\product-" + id;
+            string productPath = @"\images\product\" + id;
             string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, productPath); 
 
             if (Directory.Exists(finalPath))
