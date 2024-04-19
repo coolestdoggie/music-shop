@@ -146,7 +146,7 @@ namespace MusicShop.Areas.Admin.Controllers
             }
 
             string productPath = @"\images\product\" + id;
-            string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, productPath);
+            string finalPath = _webHostEnvironment.WebRootPath + productPath;
 
             if (Directory.Exists(finalPath))
             {
