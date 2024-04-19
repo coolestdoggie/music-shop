@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MusicShop.Models.Models
 {
@@ -18,7 +19,7 @@ namespace MusicShop.Models.Models
         public Category Category { get; set; }
         [Display(Name = "Image")]
         [ValidateNever]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         [Required]
         [Display(Name = "List Price")]

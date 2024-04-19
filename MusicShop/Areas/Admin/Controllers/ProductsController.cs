@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MusicShop.DataAccess.Repository.IRepository;
 using MusicShop.Models.Models;
 using MusicShop.Models.ViewModels;
@@ -69,41 +70,7 @@ namespace MusicShop.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
-            if (ModelState.IsValid)
-            {
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file != null)
-                {
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = @"images\product\" + productVM.Product.Id;
-                    string finalPath = Path.Combine(wwwRootPath, productPath);
-
-                    if (!Directory.Exists(finalPath))
-                        Directory.CreateDirectory(finalPath);
-
-                    using (var fileStream = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
-                    {
-                        file.CopyTo(fileStream);
-                    }
-
-                    productVM.Product.ImageUrl = @"\images\product\" + productVM.Product.Id + "\\" + fileName;
-                }
-                
-                if (productVM.Product.Id == 0)
-                {
-                    _unitOfWork.Product.Add(productVM.Product);
-                }
-                else
-                {
-                    _unitOfWork.Product.Update(productVM.Product);
-                }
-
-                _unitOfWork.Save();
-                TempData["success"] = "Product created/updated successfully";
-
-                return RedirectToAction("Index", "Products");
-            }
-            else
+            if (!ModelState.IsValid)
             {
                 productVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
                 {
@@ -113,6 +80,45 @@ namespace MusicShop.Areas.Admin.Controllers
 
                 return View(productVM);
             }
+
+            if (ProductIsNew(productVM.Product))
+            {
+                _unitOfWork.Product.Add(productVM.Product);
+                _unitOfWork.Save();
+            }   
+
+            if (file != null)
+                SetupImage(productVM, file);
+
+            _unitOfWork.Product.Update(productVM.Product);
+            _unitOfWork.Save();
+
+            TempData["success"] = "Product created/updated successfully";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        private void SetupImage(ProductVM productVM, IFormFile? file)
+        {
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            string productPath = @"images\product\" + productVM.Product.Id;
+            string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, productPath);
+
+            if (!Directory.Exists(finalPath))
+                Directory.CreateDirectory(finalPath);
+
+            using (var fileStream = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+
+            productVM.Product.ImageUrl = @"\images\product\" + productVM.Product.Id + "\\" + fileName;
+
+        }
+
+        private bool ProductIsNew(Product product)
+        {
+            return product.Id == 0;
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -140,7 +146,7 @@ namespace MusicShop.Areas.Admin.Controllers
             }
 
             string productPath = @"\images\product\" + id;
-            string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, productPath); 
+            string finalPath = Path.Combine(_webHostEnvironment.WebRootPath, productPath);
 
             if (Directory.Exists(finalPath))
             {
