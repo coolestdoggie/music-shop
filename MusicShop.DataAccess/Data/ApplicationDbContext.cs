@@ -23,49 +23,49 @@ namespace MusicShop.DataAccess.Data
                 {
                     Id = 1,
                     Name = "Keyboards",
-                    DisplayOrder = 1
+                    DisplayOrder = 31
                 },
                 new Category
                 {
                     Id = 2,
                     Name = "Guitars",
-                    DisplayOrder = 2
+                    DisplayOrder = 32
                 },
                 new Category
                 {
                     Id = 3,
                     Name = "Drums and Percussion",
-                    DisplayOrder = 3
+                    DisplayOrder = 33
                 },
                 new Category
                 {
                     Id = 4,
                     Name = "String Instruments",
-                    DisplayOrder = 4
+                    DisplayOrder = 34
                 },
                 new Category
                 {
                     Id = 5,
                     Name = "Bass Guitars",
-                    DisplayOrder = 5
+                    DisplayOrder = 35
                 },
                 new Category
                 {
                     Id = 6,
                     Name = "Microphones",
-                    DisplayOrder = 6
+                    DisplayOrder = 36
                 },
                 new Category
                 {
                     Id = 7,
                     Name = "Headphones",
-                    DisplayOrder = 7
+                    DisplayOrder = 37
                 },
                 new Category
                 {
                     Id = 8,
                     Name = "Accessories",
-                    DisplayOrder = 8
+                    DisplayOrder = 38
                 }
                 );
         
@@ -103,7 +103,7 @@ namespace MusicShop.DataAccess.Data
                     Name = "Cello",
                     Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                     CategoryId = 4,
-                    ImageUrl = "",
+                    ImageUrl = "\"C:\\Users\\coole\\Downloads\\39-min.png\"",
                     ListPrice = 70
                 }
                 );

@@ -10,35 +10,54 @@
     </div>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Upsert">
+        <form asp-action="Upsert" enctype="multipart/form-data">
             <input type="hidden" asp-for="Product.Id" />
-            <input type="hidden" asp-for="Product.CategoryId" />
+            @* <input type="hidden" asp-for="Product.ImageUrl" /> *@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group m-4">
-                <label asp-for="Product.Name" class="control-label mb-1"></label>
-                    <input asp-for="Product.Name" class="form-control" />
-                    <span asp-validation-for="Product.Name" class="text-danger"></span>
-            </div>
-                <div class="form-group m-4">
-                    <label asp-for="Product.Description" class="control-label mb-1"></label>
-                <input asp-for="Product.Description" class="form-control" />
-                    <span asp-validation-for="Product.Description" class="text-danger"></span>
-            </div>
-                <div class="form-group m-4">
-                    <label asp-for="Product.CategoryId" class="mb-1">Category</label>
-                    <div class="form-floating col-12">
-                        <select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" type="text" class="form-control border">
-                            <option disabled selected>--Select Category--</option>
-                        </select>
-                        <label asp-for="Product.CategoryId" hidden></label>
-                        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                @if (Model.Product.Id != 0)
+                {
+                    <div class="form-group m-4">
+                    <img src="@Model.Product.ImageUrl" alt="Product Image" width="120" height="120" class="rounded" />
                     </div>
+                }
+            <div class="form-group m-4">
+                <label asp-for="Product.Name" class="control-label mb-1"></label>
+                <input asp-for="Product.Name" class="form-control" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
-
-                <div class="form-group m-4">
-                    <label asp-for="Product.ListPrice" class="control-label mb-1"></label>
-                    <input asp-for="Product.ListPrice" class="form-control" />
-                    <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+            <div class="form-group m-4">
+                <label asp-for="Product.Description" class="control-label mb-1"></label>
+                <input asp-for="Product.Description" class="form-control" />
+                <span asp-validation-for="Product.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group m-4">
+                <label asp-for="Product.CategoryId" class="mb-1">Category</label>
+                <div class="form-floating col-12">
+                    <select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" type="text" class="form-control border">
+                        <option disabled selected>--Select Category--</option>
+                    </select>
+                    <label asp-for="Product.CategoryId" hidden></label>
+                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group m-4">
+                 <label asp-for="Product.ListPrice" class="control-label mb-1"></label>
+                 <input asp-for="Product.ListPrice" class="form-control" />
+                 <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group m-4">
+                 <label asp-for="Product.ImageUrl" class="mb-1">Image File</label>
+                    <div class="form-floating col-12 mb-1">
+                    @if (Model.Product.Id != 0)
+                    {
+                        <input type="file" name="file" class="form-control border mt-1" value="@Model.Product.ImageUrl" />
+                    }
+                    else
+                    {
+                        <input type="file" name="file" class="form-control border mt-1" required />
+                    }
+                    <label asp-for="Product.ImageUrl" hidden></label>
+                 </div>
             </div>
             <div class="row">
                     <div class="col-6 m-4 col-md-3">

@@ -12,10 +12,12 @@ namespace MusicShop.Models.Models
         public string Name { get; set; }
         public string Description { get; set; }
         [Required]
-        public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
+        public int CategoryId { get; set; }
         [ValidateNever]
         public Category Category { get; set; }
+        [Display(Name = "Image")]
+        [ValidateNever]
         public string ImageUrl { get; set; }
 
         [Required]
