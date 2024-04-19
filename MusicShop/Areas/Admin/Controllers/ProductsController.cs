@@ -113,7 +113,6 @@ namespace MusicShop.Areas.Admin.Controllers
             }
 
             productVM.Product.ImageUrl = @"\images\product\" + productVM.Product.Id + "\\" + fileName;
-
         }
 
         private bool ProductIsNew(Product product)
